@@ -11,12 +11,60 @@
   <!-- arm -->
   <xacro:ur5_robot prefix="" joint_limited="false"/>
 
-  <link name="world" />
 
-  <joint name="world_joint" type="fixed">
+  <link name="world" >
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    </link>
+  <link name="x_link">
+   <visual>
+    <geometry>
+        <box size="2.0 0.2 0.02"/>
+    </geometry>
+     <material name="LightGrey">
+       <color rgba="0.7 0.7 0.7 1.0"/>
+     </material>
+   </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
+
+  <joint name="world_joint" type="prismatic">
     <parent link="world" />
+    <child link = "x_link" />
+    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    <axis xyz="0 1 0" />
+    <limit effort="3000" velocity="10.0" lower="-100" upper="100" />
+  </joint>
+
+  <joint name="x_joint" type="prismatic">
+    <parent link="x_link" />
     <child link = "base_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+    <axis xyz="1 0 0" />
+    <limit effort="3000" velocity="10.0" lower="-100" upper="100" />
   </joint>
+  
+  <transmission name="world_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="world_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="$foo_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
+  <transmission name="x_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="x_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="$foo1_motor">
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 
 </robot>
