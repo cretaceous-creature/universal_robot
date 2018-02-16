@@ -24,7 +24,7 @@
   <link name="x_link">
    <visual>
     <geometry>
-        <box size="2.0 0.2 0.02"/>
+        <box size="3.0 0.04 0.01"/>
     </geometry>
      <material name="LightGrey">
        <color rgba="0.7 0.7 0.7 1.0"/>
@@ -42,7 +42,7 @@
     <child link = "x_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="0 1 0" />
-    <limit effort="3000" velocity="20.0" lower="-100" upper="100" />
+    <limit effort="3000" velocity="20.0" lower="-10" upper="10" />
   </joint>
 
   <joint name="x_joint" type="prismatic">
@@ -50,7 +50,7 @@
     <child link = "base_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="1 0 0" />
-    <limit effort="3000" velocity="20.0" lower="-100" upper="100" />
+    <limit effort="3000" velocity="20.0" lower="-3" upper="3" />
   </joint>
   
   <transmission name="world_joint_trans">
