@@ -9,27 +9,25 @@
   <xacro:include filename="$(find ur_description)/urdf/ur5.urdf.xacro" />
 
   <!-- arm -->
-  <xacro:ur5_robot prefix="" joint_limited="false"/>
-
+  <xacro:ur5_robot prefix="" joint_limited="true"
+    shoulder_pan_lower_limit="${-pi}" shoulder_pan_upper_limit="${pi}"
+    shoulder_lift_lower_limit="${-pi}" shoulder_lift_upper_limit="${pi}"
+    elbow_joint_lower_limit="${-pi}" elbow_joint_upper_limit="${pi}"
+    wrist_1_lower_limit="${-pi}" wrist_1_upper_limit="${pi}"
+    wrist_2_lower_limit="${-pi}" wrist_2_upper_limit="${pi}"
+    wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
+  />
 
   <link name="world" >
+    <static>1</static>
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-  </link>
-  <link name="y_link" >
-      <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" rpy="0 -0 0"/>
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
-  </link>
-  
+    </link>
   <link name="x_link">
    <visual>
-    <geometry>
-        <box size="2.0 0.2 0.02"/>
+    <geometry>true        <box size="3.0 0.04 0.01"/>
     </geometry>
      <material name="LightGrey">
-       <color rgba="0.5 0.5 0.5 1.0"/>
+       <color rgba="0.7 0.7 0.7 1.0"/>
      </material>
    </visual>
     <inertial>
@@ -39,18 +37,12 @@
     </inertial>
   </link>
 
-  <joint name="worldfix_joint" type="fixed">
-    <parent link="world" />
-    <child link = "y_link" />
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-  </joint>
-  
   <joint name="world_joint" type="prismatic">
-    <parent link="y_link" />
+    <parent link="world" />
     <child link = "x_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="0 1 0" />
-    <limit effort="3000" velocity="10.0" lower="-100" upper="100" />
+    <limit effort="3000" velocity="20.0" lower="-10" upper="10" />
   </joint>
 
   <joint name="x_joint" type="prismatic">
@@ -58,7 +50,7 @@
     <child link = "base_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="1 0 0" />
-    <limit effort="3000" velocity="10.0" lower="-100" upper="100" />
+    <limit effort="3000" velocity="20.0" lower="-3" upper="3" />
   </joint>
   
   <transmission name="world_joint_trans">
