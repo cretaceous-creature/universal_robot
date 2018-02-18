@@ -9,13 +9,13 @@ controller_list:
       - wrist_1_joint
       - wrist_2_joint
       - wrist_3_joint
-  - name: "world_controller"
+  - name: "lateral_slider_controller"
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     joints:
-      - world_joint
-  - name: "x_controller"
+      - lateral_slider_joint
+  - name: "forward_slider_controller"
     action_ns: follow_joint_trajectory
     type: FollowJointTrajectory
     joints:
-      - x_joint
+      - forward_slider_joint

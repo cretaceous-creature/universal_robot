@@ -18,6 +18,6 @@
 
   <rosparam file="$(find ur_gazebo)/controller/world_controller.yaml" command="load"/>
   
-  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller world_controller x_controller" respawn="false" output="screen"/>
+  <node name="arm_controller_spawner" pkg="controller_manager" type="controller_manager" args="spawn arm_controller lateral_slider_controller forward_slider_controller" respawn="false" output="screen"/>
 
 </launch>
