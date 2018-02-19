@@ -12,6 +12,12 @@
     <group name="manipulator">
         <chain base_link="lateral_slider_link" tip_link="ee_link" />
     </group>
+    <group name="xyeffector">
+        <chain base_link="world" tip_link="base_link" />
+    </group>
+    <group name="xyend">
+        <link name="base_link" />
+    </group>  
     <group name="endeffector">
         <link name="ee_link" />
     </group>
@@ -19,7 +25,7 @@
     <group_state name="home" group="manipulator">
         <joint name="elbow_joint" value="0" />
         <joint name="shoulder_lift_joint" value="0" />
-        <joint name="shoulder_pan_joint" value="0" />
+        <joint name="shoulder_pan_joint" value="1" />
         <joint name="wrist_1_joint" value="0" />
         <joint name="wrist_2_joint" value="0" />
         <joint name="wrist_3_joint" value="0" />
@@ -34,6 +40,7 @@
     </group_state>
     <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
     <end_effector name="moveit_ee" parent_link="ee_link" group="endeffector" />
+    <end_effector name="moveit_xy" parent_link="base_link" group="xyend" />
     <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
     <!-- <virtual_joint name="fixed_base" type="fixed" parent_frame="world" child_link="base_link" /> -->
     <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->

@@ -64,7 +64,9 @@
     <child link="forward_slider_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="0 1 0" />
-    <limit effort="3000" velocity="20.0" lower="-6" upper="6" />
+
+    <limit effort="10000" velocity="20.0" lower="-10" upper="10" />
+
   </joint>
 
   <joint name="forward_slider_joint" type="prismatic">
@@ -72,7 +74,8 @@
     <child link="base_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="1 0 0" />
-    <limit effort="3000" velocity="20.0" lower="-1.5" upper="1.5" />
+    <limit effort="10000" velocity="20.0" lower="-1.5" upper="1.5" />
+
   </joint>
   
   <transmission name="lateral_slider_joint_trans">
