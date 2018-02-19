@@ -28,14 +28,7 @@
   </joint>
 
   <link name="lateral_slider_link" >
-   <visual>
-    <geometry>
-        <box size="0.05 12 0.01"/>
-    </geometry>
-     <material name="LightGrey">
-       <color rgba="0.7 0.7 0.7 1.0"/>
-     </material>
-   </visual>
+
     <inertial>
       <mass value="0.01" />
       <origin xyz="0 0 0" rpy="0 -0 0"/>
