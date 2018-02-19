@@ -18,23 +18,19 @@
     wrist_3_lower_limit="${-pi}" wrist_3_upper_limit="${pi}"
   />
 
-  <link name="world" >
+  <link name="world">
     <static>true</static>
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-    </link>
-
- <link name="y_link" >
-      <inertial>
-      <mass value="0.01" />
-      <origin xyz="0 0 0" rpy="0 -0 0"/>
-      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
-    </inertial>
   </link>
 
-  <link name="x_link">
+  <joint name="world_joint" type="fixed">
+    <parent link="world" />
+    <child link="lateral_slider_link" />
+  </joint>
+
+  <link name="lateral_slider_link" >
    <visual>
     <geometry>
-        <box size="2.5 0.04 0.01"/>
+        <box size="0.05 12 0.01"/>
     </geometry>
      <material name="LightGrey">
        <color rgba="0.7 0.7 0.7 1.0"/>
@@ -47,31 +43,44 @@
     </inertial>
   </link>
 
-  <joint name="worldfix_joint" type="fixed">
-    <parent link="world" />
-    <child link = "y_link" />
-    <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
-  </joint>
+  <link name="forward_slider_link">
+   <visual>
+    <geometry>
+        <box size="3.0 0.05 0.01"/>
+    </geometry>
+     <material name="LightGrey">
+       <color rgba="0.7 0.7 0.7 1.0"/>
+     </material>
+   </visual>
+    <inertial>
+      <mass value="0.01" />
+      <origin xyz="0 0 0" rpy="0 -0 0"/>
+      <inertia ixx="0.01" ixy="0" ixz="0" iyy="0.01" iyz="0" izz="0.01"/>
+    </inertial>
+  </link>
 
-  <joint name="world_joint" type="prismatic">
-    <parent link="y_link" />
-    <child link = "x_link" />
+  <joint name="lateral_slider_joint" type="prismatic">
+    <parent link="lateral_slider_link" />
+    <child link="forward_slider_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="0 1 0" />
+
     <limit effort="10000" velocity="20.0" lower="-10" upper="10" />
+
   </joint>
 
-  <joint name="x_joint" type="prismatic">
-    <parent link="x_link" />
-    <child link = "base_link" />
+  <joint name="forward_slider_joint" type="prismatic">
+    <parent link="forward_slider_link" />
+    <child link="base_link" />
     <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
     <axis xyz="1 0 0" />
-    <limit effort="10000" velocity="20.0" lower="-3" upper="3" />
+    <limit effort="10000" velocity="20.0" lower="-1.5" upper="1.5" />
+
   </joint>
   
-  <transmission name="world_joint_trans">
+  <transmission name="lateral_slider_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="world_joint">
+    <joint name="lateral_slider_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="$foo_motor">
@@ -79,9 +88,9 @@
     </actuator>
   </transmission>
 
-  <transmission name="x_joint_trans">
+  <transmission name="forward_slider_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
-    <joint name="x_joint">
+    <joint name="forward_slider_joint">
       <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="$foo1_motor">

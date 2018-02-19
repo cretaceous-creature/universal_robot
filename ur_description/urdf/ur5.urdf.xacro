@@ -275,13 +275,15 @@
     <joint name="${prefix}ee_fixed_joint" type="fixed">
       <parent link="${prefix}wrist_3_link" />
       <child link = "${prefix}ee_link" />
-      <origin xyz="0.0 ${wrist_3_length} 0.0" rpy="0.0 0.0 ${pi/2.0}" />
+      <origin xyz="0.0 ${wrist_3_length} 0.0" rpy="${-pi/2.0} 0.0 0.0" />
     </joint>
 
 
     <link name="${prefix}ee_link">
   <!-- chen add -->
-         <visual>
+      <visual>
+        <!-- Uses -pi/2 pitch such that z axis points outwards. -->
+        <origin xyz="0 0 0" rpy="0 ${-pi/2.0} 0"/>
         <geometry>
           <mesh filename="package://ur_description/meshes/ee/chargeattachment.dae" />
         </geometry>
@@ -290,7 +292,7 @@
         </material>
       </visual>
    <!-- add the mesh to the end effector -->
-      
+
     </link>
 
     <xacro:ur_arm_transmission prefix="${prefix}" />
