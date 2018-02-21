@@ -2,11 +2,11 @@
 # Specific joint properties can be changed with the keys [max_position, min_position, max_velocity, max_acceleration]
 # Joint limits can be turned off with [has_velocity_limits, has_acceleration_limits]
 joint_limits:
-  lateral_slider_controller_joint:
+  lateral_slider_joint:
     has_positon_limits: true
     max_position: 8
     min_position: -8
-  forward_slider_controller_joint:
+  forward_slider_joint:
     has_positon_limits: true
     max_position: 1.5
     min_position: -1.5
