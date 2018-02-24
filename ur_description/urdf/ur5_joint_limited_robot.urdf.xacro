@@ -30,7 +30,7 @@
   <link name="lateral_slider_link" >
    <visual>
     <geometry>
-        <box size="0.05 20 0.01"/>
+        <box size="0.05 15 0.01"/>
     </geometry>
      <material name="LightGrey">
        <color rgba="0.7 0.7 0.7 1.0"/>
