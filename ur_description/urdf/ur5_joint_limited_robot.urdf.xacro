@@ -77,6 +77,24 @@
     <limit effort="10000" velocity="20.0" lower="-1.5" upper="1.5" />
 
   </joint>
+
+
+  <!-- chen add -->
+
+  <xacro:include filename="$(find realsense_gazebo_plugin)/urdf/realsense-RS200.macro.xacro"/>
+  <!-- Gazebo world link required to position the robot with respect to origin -->
+  <!-- Place camera referenced to world frame -->
+  <joint name="realsense_joint" type="fixed">
+    <parent link="ee_link"/>
+    <child link="rs200_camera"/>
+    <origin rpy="${pi/-2.0} ${pi/-2.0} 0" xyz="0 0.04 -0.004"/>
+  </joint>
+  
+  <xacro:realsense-rs200/>
+    <!-- chen add -->
+
+
+
   
   <transmission name="lateral_slider_joint_trans">
     <type>transmission_interface/SimpleTransmission</type>
