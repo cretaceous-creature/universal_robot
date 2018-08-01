@@ -30,7 +30,7 @@
   <link name="lateral_slider_link" >
    <visual>
     <geometry>
-        <box size="0.05 15 0.01"/>
+        <box size="0.05 15 0.02"/>
     </geometry>
      <material name="LightGrey">
        <color rgba="0.7 0.7 0.7 1.0"/>
@@ -46,7 +46,7 @@
   <link name="forward_slider_link">
    <visual>
     <geometry>
-        <box size="3.0 0.05 0.01"/>
+        <box size="5.0 0.05 0.02"/>
     </geometry>
      <material name="LightGrey">
        <color rgba="0.7 0.7 0.7 1.0"/>
@@ -87,7 +87,7 @@
   <joint name="realsense_joint" type="fixed">
     <parent link="ee_link"/>
     <child link="rs200_camera"/>
-    <origin rpy="${pi/-2.0} ${pi/-2.0} 0" xyz="0 0.04 -0.004"/>
+    <origin rpy="${pi/-2.0} ${pi/-2.0} 0" xyz="0 0.06 -0.004"/>
   </joint>
   
   <xacro:realsense-rs200/>
